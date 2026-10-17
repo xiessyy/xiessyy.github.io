@@ -1,22 +1,31 @@
 ---
 layout: default
 ---
+
 <article class="post">
-  <h1>{{ page.title }}</h1>
-  <div class="post-meta">{{ page.date | date: "%Y 年 %m 月 %d 日" }}{% if page.categories %} · {{ page.categories | first }}{% endif %}</div>
+  <header class="post-head">
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+      {% if page.categories %}<span class="cat">{{ page.categories | first }}</span>{% endif %}
+    </div>
+  </header>
+
   <div class="post-body">
 {{ content }}
   </div>
+
   <nav class="post-nav">
     {% if page.previous.url %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
     {% if page.next.url %}<a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
   </nav>
-<section class="comments">
-  <h2>💬 评论</h2>
 
-  <div id="moll-comment"></div>
-  <script src="https://blog-comment.achenmo99.workers.dev/widget.js"
-          data-slug="{{ page.url | relative_url }}"
-          async></script>
-</section>
+  <!-- ===== 评论区 ===== -->
+  <section class="comments">
+    <h2>评论</h2>
+    <div id="moll-comment"></div>
+    <script src="https://blog-comment.achenmo99.workers.dev/widget.js"
+            data-slug="{{ page.url | relative_url }}"
+            async></script>
+  </section>
 </article>

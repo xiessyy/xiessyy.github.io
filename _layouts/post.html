@@ -11,22 +11,12 @@ layout: default
     {% if page.previous.url %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
     {% if page.next.url %}<a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
   </nav>
-  <section class="comments">
-    <h2>💬 评论</h2>
-    <script src="https://giscus.app/client.js"
-      data-repo="你的用户名/你的仓库名"
-      data-repo-id="填写启用后得到的ID"
-      data-category="Announcements"
-      data-category-id="填写启用后得到的ID"
-      data-mapping="pathname"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="bottom"
-      data-theme="preferred_color_scheme"
-      data-lang="zh-CN"
-      crossorigin="anonymous"
-      async>
-    </script>
-  </section>
+<section class="comments">
+  <h2>💬 评论</h2>
+
+  <div id="moll-comment"></div>
+  <script src="https://blog-comment.achenmo99.workers.dev/widget.js"
+          data-slug="{{ page.url | relative_url }}"
+          async></script>
+</section>
 </article>

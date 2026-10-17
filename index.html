@@ -2,22 +2,34 @@
 layout: default
 title: 首页
 ---
-<section class="hero">
-  <h1>你好，我是谢思源 👋</h1>
-  <p class="subtitle">高一学生 · 正在学写代码 · 把学到的东西记在这里</p>
+
+<section class="intro">
+  <h1 class="sitename">{{ site.title }}</h1>
+  <p class="tagline">GAO YI · XIE SIYUAN · 2026</p>
+  <p class="bio">
+    高一学生。课余时间折腾电脑，最近在学做网站。
+    这个博客用来放我写的东西——学到的、踩过的坑、还有一些没想清楚的念头。
+    <strong>更新随缘，但会一直写。</strong>
+  </p>
 </section>
 
-<h2>📝 最新文章</h2>
-{% if site.posts.size == 0 %}
-<p class="empty">还没有文章。在 _posts/ 里新建一个 .md 文件就会出现。</p>
-{% else %}
-<ul class="post-list">
-{% for post in site.posts %}
-  <li>
-    <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
-    <div class="post-info"><time>{{ post.date | date: "%Y-%m-%d" }}</time>{% if post.categories %}<span class="cat">{{ post.categories | first }}</span>{% endif %}</div>
-    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 100 }}</p>
-  </li>
-{% endfor %}
-</ul>
-{% endif %}
+<section class="posts">
+  <h2 class="sec-title">文章</h2>
+
+  {% if site.posts.size == 0 %}
+    <p class="empty">还没有文章。</p>
+  {% else %}
+  <ul class="post-list">
+    {% for post in site.posts %}
+    <li>
+      <div class="pl-meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+        {% if post.categories %}<span class="cat">{{ post.categories | first }}</span>{% endif %}
+      </div>
+      <a href="{{ post.url | relative_url }}" class="pl-title">{{ post.title }}</a>
+      <p class="pl-excerpt">{{ post.excerpt | strip_html | truncate: 90 }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>

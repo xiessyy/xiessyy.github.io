@@ -1,1 +1,23 @@
-你好
+---
+layout: default
+title: 首页
+---
+<section class="hero">
+  <h1>你好，我是墨龙零 👋</h1>
+  <p class="subtitle">高一学生 · 正在学写代码 · 把学到的东西记在这里</p>
+</section>
+
+<h2>📝 最新文章</h2>
+{% if site.posts.size == 0 %}
+<p class="empty">还没有文章。在 _posts/ 里新建一个 .md 文件就会出现。</p>
+{% else %}
+<ul class="post-list">
+{% for post in site.posts %}
+  <li>
+    <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
+    <div class="post-info"><time>{{ post.date | date: "%Y-%m-%d" }}</time>{% if post.categories %}<span class="cat">{{ post.categories | first }}</span>{% endif %}</div>
+    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}

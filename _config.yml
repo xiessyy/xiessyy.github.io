@@ -1,0 +1,19 @@
+title: 墨龙零的博客
+description: 一名高一学生的技术学习与生活记录
+author: 墨龙零
+
+url: ""
+baseurl: ""
+permalink: /posts/:title/
+timezone: Asia/Shanghai
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+defaults:
+  - scope:
+      path: "_posts"
+    values:
+      layout: post
